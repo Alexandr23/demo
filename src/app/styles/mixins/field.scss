@@ -1,0 +1,60 @@
+@import "font-size";
+@import "ellipsis";
+@import "../vars";
+
+$field-border-color-focus: #37a1f9;
+
+@mixin field () {
+  @include font-size(14, 20);
+  display: block;
+  width: 100%;
+  height: $field-size-nm;
+  padding: 8px 10px;
+  border: 1px solid $field-border-color;
+  border-radius: 0;
+  outline: none;
+  color: $field-text-color;
+  background-color: $color-white;
+  transition: border-color ease-in-out .15s;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow: none;
+    border-color: $field-border-color-focus;
+  }
+
+
+  &::placeholder {
+    @include ellipsis();
+    max-width: 100%;
+    color: $field-placeholder-text-color;
+  }
+
+  &:-ms-input-placeholder {
+    @include ellipsis();
+    max-width: 100%!important;
+    color: $field-placeholder-text-color!important;
+  }
+
+  &:disabled, &[readonly] {
+    background-color: $color-grey-light;
+    cursor: default;
+  }
+
+  &_error {
+    border-color: $field-border-color-error;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $field-border-color-focus;
+    }
+  }
+  &-errors {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+
+  &-errors_active {
+    opacity: 1;
+  }
+}

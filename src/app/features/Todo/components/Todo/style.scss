@@ -1,0 +1,67 @@
+@import "../../../../styles/vars";
+@import "../../../../styles/mixins/font-size";
+@import "../../../../styles/mixins/font-weight";
+
+$img-path: '../Todo/img/';
+
+.todo {
+  @include font-size(14, 20);
+  padding: 0 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  & + & {
+    .todo__inner { border-top: 1px solid $color-light-grey-silver; }
+  }
+
+  &:hover {
+    background-color: $color-light-grey-silver;
+
+    .todo__time { display: none; }
+    .todo__remove { display: block; }
+  }
+}
+
+.todo__inner {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.todo__title {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.todo__icon {
+  @include font-size(16, 20);
+  @include font-weight(bold);
+  display: block;
+  width: 30px;
+  flex-shrink: 0;
+  height: 30px;
+  border-radius: 100%;
+  color: $color-white;
+  text-transform: uppercase;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.todo__time {
+  @include font-size(12, 20);
+  color: $color-dark-grey-sky;
+}
+
+.todo__remove {
+  $size: 10px;
+
+  display: none;
+  width: 30px;
+  height: 30px;
+  background: url($img-path + 'delete.svg') center no-repeat;
+  background-size: $size $size;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background-image: url($img-path + 'delete-hover.svg'); }
+}

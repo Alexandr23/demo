@@ -1,0 +1,15 @@
+@import "../../styles/mixins/font-size";
+@import "../../styles/vars";
+
+.input {
+  @include font-size(14, 20);
+  display: block;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 5px 20px;
+
+  &::placeholder {
+    color: $color-light-grey-steel;
+  }
+}

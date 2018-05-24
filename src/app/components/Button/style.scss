@@ -1,0 +1,25 @@
+@import "../../styles/mixins/font-size";
+@import "../../styles/vars";
+
+.button {
+  @include font-size(14, 20);
+  display: inline-block;
+  padding: 4px 20px;
+  outline: none;
+  border: 1px solid $color-blue;
+  border-radius: 3px;
+  color: $color-blue;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-blue-light;
+    border-color: $color-blue-light;
+  }
+
+  &:disabled {
+    color: $color-dark-grey-sky;
+    border-color: $color-light-grey-steel;
+    cursor: default;
+  }
+}

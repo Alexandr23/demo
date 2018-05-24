@@ -1,0 +1,7 @@
+@mixin ellipsis () {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  max-width: 100%;
+}

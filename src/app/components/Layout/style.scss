@@ -1,0 +1,24 @@
+@import "../../styles/vars";
+
+$content-width: 600px;
+$content-padding: 20px;
+
+.layout {
+  display: flex;
+  min-height: 100%;
+  background-color: $color-light-grey-silver;
+}
+
+.layout__inner {
+  width: 100%;
+  min-height: 100%;
+  max-width: $content-width + 2 * $content-padding;
+  margin: 0 auto;
+  padding: $content-padding;
+}
+
+.layout__content {
+  min-height: 100%;
+  background-color: $color-white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);;
+}

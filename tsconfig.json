@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*",
+        "src/app/*",
+        "src/app/redux/*"
+      ]
+    },
+    "outDir": "dist",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

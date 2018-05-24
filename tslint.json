@@ -1,0 +1,35 @@
+{
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+    "indent": [true, "spaces"],
+    "quotemark": [true, "single", "jsx-double"],
+    "no-var-requires": false,
+    "ordered-imports": false,
+    "member-access": false,
+    "member-ordering": [false],
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "no-consecutive-blank-lines": [true, 2],
+    "no-console": [false],
+    "no-submodule-imports": false,
+    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "jsx-alignment": [false],
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "curly": true,
+    "no-empty": true,
+    "triple-equals": true,
+    "arrow-return-shorthand": true,
+    "class-name": true,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "array-type": false,
+    "one-variable-per-declaration": false,
+    "max-classes-per-file": [false],
+    "no-implicit-dependencies": [true, "dev"]
+  },
+  "linterOptions": {
+    "exclude": ["**/__tests__/**"]
+  }
+}

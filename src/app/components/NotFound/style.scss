@@ -1,0 +1,38 @@
+$img-path: '../NotFound/img/';
+
+.notfound {
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  background: #ececec;
+}
+
+.notfound__inner {
+  margin: auto;
+}
+
+.notfound__title {
+  font-size: 100px;
+  color: #000;
+  font-weight: 900;
+  line-height: 86px;
+  margin-bottom: 15px;
+}
+
+.notfound__link {
+  display: inline-block;
+  color: #fff;
+  background: #108ee9;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 20px;
+  font-size: 18px;
+  margin: 25px 0 0 0;
+  transition: background 0.2s;
+  border-radius: 4px;
+}
+
+.notfound__link:hover {
+  background: #49a9ee;
+  color: #fff;
+}
