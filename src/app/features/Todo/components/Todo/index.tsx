@@ -21,7 +21,7 @@ class Todo extends React.Component<IProps> {
     return (
       <div className={cx('todo')}>
         <div className={cx('todo__inner')}>
-          <div className={cx('todo__icon')} style={{ backgroundColor: bg }}>{ title[0] }</div>
+          <div className={cx('todo__icon')} style={{ backgroundColor: bg }}>{ title && title[0] }</div>
           <div className={cx('todo__title')}>{ title }</div>
           <div className={cx('todo__time')}>{ time }</div>
           <div className={cx('todo__remove')} onClick={this.remove} />

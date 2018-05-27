@@ -18,7 +18,7 @@ var config = {
   env: process.env.NODE_ENV || 'development',
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 8889,
-  apiBaseUrl: !IS_DEV ? apiUrl : 'http://api.bmp.magonline.ru/api/',
+  apiBaseUrl: !IS_DEV ? apiUrl : '',
   baseUrl: 'http://api.bmp.magonline.ru/',
   staticBaseUrl: !IS_DEV ? staticUrl : '',
 };

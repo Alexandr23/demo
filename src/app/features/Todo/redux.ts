@@ -7,7 +7,10 @@ const TODO_REQUEST_START = 'TODO_REQUEST_START';
 const TODO_REQUEST_SUCCESS = 'TODO_REQUEST_SUCCESS';
 const TODO_REQUEST_FAILURE = 'TODO_REQUEST_FAILURE';
 
-const TODO_CREATE = 'TODO_CREATE';
+const TODO_CREATE_REQUEST = 'TODO_CREATE_REQUEST';
+const TODO_CREATE_SUCCESS = 'TODO_CREATE_SUCCESS';
+const TODO_CREATE_FAILURE = 'TODO_CREATE_FAILURE';
+
 const TODO_DELETE = 'TODO_DELETE';
 
 const INITIAL_STATE: ITodoState = {
@@ -46,11 +49,26 @@ const TodoReducer = (state = INITIAL_STATE, action: any) => {
         isRequested: false,
       };
 
-    case TODO_CREATE:
+    case TODO_CREATE_REQUEST:
+      return {
+        ...state,
+        isRequesting: true,
+        isRequested: false,
+      };
+
+    case TODO_CREATE_SUCCESS:
       return {
         ...state,
         list: [payload, ...state.list],
         error: null,
+        isRequesting: false,
+        isRequested: true,
+      };
+
+    case TODO_CREATE_FAILURE:
+      return {
+        ...state,
+        error: payload,
         isRequesting: false,
         isRequested: false,
       };
@@ -102,9 +120,33 @@ const todoRequestFailure = (error: AxiosError) => {
 };
 
 export const todoCreate = (todo: ITodo) => {
+  return (dispatch: any): any => {
+    dispatch(todoCreateRequest(todo));
+    return api.createTodo(todo)
+      .then((response: AxiosResponse) => dispatch(todoCreateSuccess(response)))
+      .catch((error: AxiosError) => dispatch(todoCreateFailure(error)));
+  };
+}
+
+export const todoCreateRequest = (todo: ITodo) => {
   return {
-    type: TODO_CREATE,
+    type: TODO_CREATE_REQUEST,
     payload: todo,
+  };
+};
+
+export const todoCreateSuccess = (payload: AxiosResponse) => {
+  console.log('todoCreateSuccess', payload);
+  return {
+    type: TODO_CREATE_SUCCESS,
+    payload: payload.data,
+  };
+};
+
+export const todoCreateFailure = (error: AxiosError) => {
+  return {
+    type: TODO_CREATE_FAILURE,
+    payload: error,
   };
 };
 

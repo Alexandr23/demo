@@ -35,7 +35,7 @@ class Todo extends React.Component<IProps, IState> {
   }
 
   componentDidMount () {
-    // this.props.todoGetList();
+    this.props.todoGetList();
   }
 
   onChange = event => {
