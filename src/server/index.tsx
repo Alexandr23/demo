@@ -16,19 +16,19 @@ app.use(favicon(path.join(__dirname, IS_PROD ? 'static/icons/' : '../src/server/
 app.use(compression());
 app.use(express.static(path.join(__dirname, '/')));
 
-if (IS_PROD) {
-  if (!process.env.API_URL || !process.env.STATIC_URL) {
-    console.info(
-      Chalk.black.bgRed(
-        `\n-------------------------------------`,
-        `\n Не указаны API_URL или STATIC_URL   `,
-        `\n-------------------------------------`,
-        `\n`,
-      ),
-    );
-    process.exit();
-  }
-}
+// if (IS_PROD) {
+//   if (!process.env.API_URL || !process.env.STATIC_URL) {
+//     console.info(
+//       Chalk.black.bgRed(
+//         `\n-------------------------------------`,
+//         `\n Не указаны API_URL или STATIC_URL   `,
+//         `\n-------------------------------------`,
+//         `\n`,
+//       ),
+//     );
+//     process.exit();
+//   }
+// }
 
 app.use(require('./api/todos'));
 app.use(require('./routes'));

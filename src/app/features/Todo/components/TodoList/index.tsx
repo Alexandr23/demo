@@ -18,7 +18,7 @@ class TodoList extends React.Component<IProps> {
 
     return (
       <div className={cx('todolist')}>
-        {todolist.length > 0 && todolist.map(todo => (<Todo key={todo.id} todo={todo} onTodoDelete={onTodoDelete} />))}
+        {todolist.length > 0 && todolist.map((todo, i) => (<Todo key={i} todo={todo} onTodoDelete={onTodoDelete} />))}
       </div>
     );
   }

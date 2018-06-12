@@ -36,6 +36,17 @@ class Todo extends React.Component<IProps, IState> {
 
   componentDidMount () {
     this.props.todoGetList();
+
+    if (WebSocket) {
+      const ws = new WebSocket('ws://0.0.0.0:3000');
+      ws.onmessage = message => {
+        console.log(message.data);
+        if (message.data === 'update') {
+          this.props.todoGetList();
+        }
+      }
+      // ws.send('WebSocket client ready');
+    }
   }
 
   onChange = event => {
