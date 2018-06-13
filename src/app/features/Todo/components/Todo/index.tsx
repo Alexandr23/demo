@@ -12,7 +12,7 @@ interface IProps {
 
 class Todo extends React.Component<IProps> {
   remove = () => {
-    this.props.onTodoDelete(this.props.todo.id);
+    this.props.onTodoDelete(this.props.todo._id);
   }
 
   render() {

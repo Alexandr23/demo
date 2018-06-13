@@ -11,7 +11,9 @@ const TODO_CREATE_REQUEST = 'TODO_CREATE_REQUEST';
 const TODO_CREATE_SUCCESS = 'TODO_CREATE_SUCCESS';
 const TODO_CREATE_FAILURE = 'TODO_CREATE_FAILURE';
 
-const TODO_DELETE = 'TODO_DELETE';
+const TODO_DELETE_REQUEST = 'TODO_DELETE_REQUEST';
+const TODO_DELETE_SUCCESS = 'TODO_DELETE_SUCCESS';
+const TODO_DELETE_FAILURE = 'TODO_DELETE_FAILURE';
 
 const INITIAL_STATE: ITodoState = {
   list: [],
@@ -73,11 +75,26 @@ const TodoReducer = (state = INITIAL_STATE, action: any) => {
         isRequested: false,
       };
 
-    case TODO_DELETE:
+    case TODO_DELETE_REQUEST:
+      return {
+        ...state,
+        isRequesting: true,
+        isRequested: false,
+      };
+
+    case TODO_DELETE_SUCCESS:
       return {
         ...state,
         list: removeTodo(state.list, payload),
         error: null,
+        isRequesting: false,
+        isRequested: true,
+      };
+
+    case TODO_DELETE_FAILURE:
+      return {
+        ...state,
+        error: payload,
         isRequesting: false,
         isRequested: false,
       };
@@ -136,7 +153,6 @@ export const todoCreateRequest = (todo: ITodo) => {
 };
 
 export const todoCreateSuccess = (payload: AxiosResponse) => {
-  console.log('todoCreateSuccess', payload);
   return {
     type: TODO_CREATE_SUCCESS,
     payload: payload.data,
@@ -151,8 +167,31 @@ export const todoCreateFailure = (error: AxiosError) => {
 };
 
 export const todoDelete = (id: number) => {
+  return (dispatch: any): any => {
+    dispatch(todoDeleteRequest());
+    return api.deleteTodo(id)
+      .then((response: AxiosResponse) => dispatch(todoDeleteSuccess(response)))
+      .catch((error: AxiosError) => dispatch(todoDeleteFailure(error)));
+  };
+}
+
+export const todoDeleteRequest = () => {
   return {
-    type: TODO_DELETE,
-    payload: id,
+    type: TODO_DELETE_REQUEST,
+    payload: {},
+  };
+};
+
+export const todoDeleteSuccess = (payload: AxiosResponse) => {
+  return {
+    type: TODO_DELETE_SUCCESS,
+    payload: payload.data.id,
+  };
+};
+
+export const todoDeleteFailure = (error: AxiosError) => {
+  return {
+    type: TODO_DELETE_FAILURE,
+    payload: error,
   };
 };

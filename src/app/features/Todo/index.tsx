@@ -38,14 +38,12 @@ class Todo extends React.Component<IProps, IState> {
     this.props.todoGetList();
 
     if (WebSocket) {
-      const ws = new WebSocket('ws://0.0.0.0:3000');
+      const ws = new WebSocket('ws://192.168.0.103:3000');
       ws.onmessage = message => {
-        console.log(message.data);
         if (message.data === 'update') {
           this.props.todoGetList();
         }
       }
-      // ws.send('WebSocket client ready');
     }
   }
 
@@ -57,7 +55,6 @@ class Todo extends React.Component<IProps, IState> {
     event.preventDefault();
 
     this.props.todoCreate({
-      id: Math.round(Math.random() * 10000000),
       title: this.state.newTodo,
       time: formatTime(new Date()),
       bg: hex(),

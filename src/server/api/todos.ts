@@ -40,15 +40,12 @@ router.get('/api/todos', (req, res) => {
       res.status(500).send('Ошибка на сервере');
     }
 
-    console.log(todos);
     res.status(200).send(todos);
   });
 });
 
 router.post('/api/todos', (req, res) => {
   const todo = req.body;
-
-  console.log(req.body);
 
   Todo.create(todo, (err, todo) => {
     if (err) {
@@ -61,6 +58,23 @@ router.post('/api/todos', (req, res) => {
     });
 
     res.status(200).send(todo);
+  });
+});
+
+router.delete('/api/todos', (req, res) => {
+  const id = req.body.id;
+
+  Todo.findByIdAndRemove(id, err => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Ошибка на сервере');
+    }
+
+    wws.clients.forEach(client => {
+      client.send('update');
+    });
+
+    res.status(200).send({ id });
   });
 });
 
