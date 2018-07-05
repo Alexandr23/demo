@@ -23,6 +23,10 @@ var config = {
   baseUrl: 'http://api.bmp.magonline.ru/',
   // staticBaseUrl: !IS_DEV ? staticUrl : '',
   staticBaseUrl: '',
+  ws: {
+    host: process.env.WS_HOST || 'ws://172.21.19.34',
+    port: process.env.WS_PORT || 3000,
+  },
 };
 
 module.exports = config;
