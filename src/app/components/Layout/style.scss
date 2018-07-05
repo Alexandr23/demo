@@ -22,3 +22,20 @@ $content-padding: 20px;
   background-color: $color-white;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);;
 }
+
+.layout__links {
+  margin-bottom: 10px;
+}
+
+.layout__link {
+  &, &:active, &:focus { color: black; }
+  &:hover { color: #999999; }
+
+  & + & {
+    margin-left: 20px;
+  }
+}
+
+.layout__link_active {
+  &, &:active, &:focus, &:hover { color: #999999; }
+}

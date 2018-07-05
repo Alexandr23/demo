@@ -1,35 +1,7 @@
-import db from '../db';
+import Todo from '../models/todos';
 import wss from '../ws';
-const Scheme = db.Schema;
 const router = require('express').Router();
 
-wss.on('connection', ws => {
-  ws.on('message', message => console.log(message));
-  ws.send('WebSocket works');
-});
-
-const todoScheme = new Scheme({
-  title: {
-    type: String,
-    required: true,
-    maxLength: 256,
-  },
-  time: {
-    type: String,
-    required: true,
-    default: Date.now,
-  },
-  bg: {
-    type: String,
-    required: true,
-    minLength: 7,
-    maxLength: 7,
-  },
-}, {
-  versionKey: false,
-});
-
-const Todo = db.model('Todo', todoScheme);
 
 router.get('/api/todos', (req, res) => {
   if (req.session.view) {

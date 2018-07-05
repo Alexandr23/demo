@@ -17,11 +17,11 @@ class App extends PureComponent<IProps> {
     const routes = this.props.route.routes;
     const pathname = this.props.location.pathname;
     const route = matchRoutes(routes, pathname)[0];
-    const title = route && route.route.title ? `${route.route.title} | Big Market Place` : 'Big Market Place';
+    const title = route && route.route.title ? `${route.route.title} | Demo` : 'Demo';
 
     return (
       <>
-        <Helmet defaultTitle={title} titleTemplate="%s | Big Market Place">
+        <Helmet defaultTitle={title} titleTemplate="%s | Demo">
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Helmet>
         {renderRoutes(routes)}

@@ -17,12 +17,13 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, '/')));
 app.use(require('./session').default);
 app.use(require('./api/todos'));
+app.use(require('./api/user'));
 app.use(require('./routes'));
 
 app.listen(appConfig.port, appConfig.host, err => {
   if (err) {
     console.error(Chalk.bgRed(err));
-  } else {
+  } else { 
     console.info(
       Chalk.black.bgGreen(
         `\n-----------------------------------`,

@@ -1,6 +1,8 @@
 import App from '../../client/app';
 import NotFound from '../components/NotFound';
 import TodoPage from '../pages/Todo'
+import LoginPage from '../pages/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage';
 
 const routes = [
   {
@@ -17,6 +19,18 @@ const routes = [
         //     store.dispatch(Actions2),
         //   ]);
         // },
+      },
+      {
+        path: '/login',
+        component: LoginPage,
+        title: 'Вход',
+        exact: true,
+      },
+      {
+        path: '/registration',
+        component: RegistrationPage,
+        title: 'Регистрация',
+        exact: true,
       },
       {
         component: NotFound,
