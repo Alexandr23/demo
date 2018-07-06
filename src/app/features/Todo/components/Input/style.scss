@@ -1,5 +1,5 @@
-@import "../../styles/mixins/font-size";
-@import "../../styles/vars";
+@import "../../../../styles/mixins/font-size";
+@import "../../../../styles/vars";
 
 .input {
   @include font-size(14, 20);
@@ -8,13 +8,8 @@
   outline: none;
   border: none;
   padding: 5px 20px;
-  border: 1px solid $color-light-grey-steel;
 
   &::placeholder {
     color: $color-light-grey-steel;
-  }
-
-  & + & {
-    margin-top: 20px;
   }
 }

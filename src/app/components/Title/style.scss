@@ -1,0 +1,9 @@
+@import "../../styles/mixins/font-size";
+@import "../../styles/vars";
+
+.title {
+  @include font-size(20, 26);
+  color: $color-black-light;
+  display: block;
+  text-align: left;
+}

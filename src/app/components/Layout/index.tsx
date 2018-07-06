@@ -39,23 +39,25 @@ class Layout extends React.PureComponent<IProps> {
     return (
       <div className={cx('layout')}>
         <div className={cx('layout__inner')}>
-          <div className={cx('layout__links')}>
-            {routes.length > 0 &&
-              routes.map(({ path, title }) => (
-                <Link
-                  className={cx({
-                    layout__link: true,
-                    layout__link_active: pathname === path,
-                  })}
-                  to={path}
-                  key={path}
-                >
-                  {title}
-                </Link>
-              ))}
-          </div>
+          <div className={cx('layout__content')}>
+            <div className={cx('layout__links')}>
+              {routes.length > 0 &&
+                routes.map(({ path, title }) => (
+                  <Link
+                    className={cx({
+                      layout__link: true,
+                      layout__link_active: pathname === path,
+                    })}
+                    to={path}
+                    key={path}
+                  >
+                    {title}
+                  </Link>
+                ))}
+            </div>
 
-          <div className={cx('layout__content')}>{children}</div>
+            <div className={cx('layout__box')}>{children}</div>
+          </div>
         </div>
       </div>
     );

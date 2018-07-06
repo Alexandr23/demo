@@ -7,15 +7,16 @@ export const cx = classNames.bind(style);
 
 interface IProps {
   children: string;
+  className?: string;
   disabled?: boolean;
 }
 
 class Button extends React.PureComponent<IProps> {
   render() {
-    const { children, disabled } = this.props;
+    const { children, disabled, className } = this.props;
 
     return (
-      <button className={cx('button')} disabled={ disabled }>{ children }</button>
+      <button className={cx('button', className)} disabled={ disabled }>{ children }</button>
     );
   }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../models/store';
 import { ITodo, ITodoState } from '../../models/todo';
-import Input from '../../components/Input';
+import Input from './components/Input';
 import Button from '../../components/Button';
 import { todoGetList, todoCreate, todoDelete } from './redux';
 import TodoList from './components/TodoList';

@@ -2,13 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../models/store';
 import Layout from '../../components/Layout';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Title from '../../components/Title';
 import { register } from '../../redux/user';
 import { IUserState } from '../../models/user';
 
 /* Styles */
-// const style = require('./style.scss');
-// const classNames = require('classnames/bind');
-// const cx = classNames.bind(style);
+const style = require('./style.scss');
+const classNames = require('classnames/bind');
+const cx = classNames.bind(style);
 
 interface IRegistrationForm {
   username: string;
@@ -58,8 +61,9 @@ class RegistrationPage extends React.Component<IProps, IState> {
       alert('Ошибка валидации');
       return;
     }
-    
-    this.props.register({ username, password })
+
+    this.props
+      .register({ username, password })
       .then(res => console.log(res))
       .catch(err => console.log(err));
 
@@ -71,11 +75,18 @@ class RegistrationPage extends React.Component<IProps, IState> {
 
     return (
       <Layout>
-        <form onSubmit={this.submit}>
-          <input type="text" name="username" onChange={this.onChange} value={username} placeholder="Имя" />
-          <input type="password" name="password" onChange={this.onChange} value={password} placeholder="Пароль" />
-          <input type="confirmPassword" name="confirmPassword" onChange={this.onChange} value={confirmPassword} placeholder="Повторите пароль" />
-          <button>Зарегистироваться</button>
+        <form className={cx('form')} onSubmit={this.submit}>
+          <Title className={cx('title')}>Регистрация</Title>
+          <Input type="text" name="username" onChange={this.onChange} value={username} placeholder="Имя" />
+          <Input type="password" name="password" onChange={this.onChange} value={password} placeholder="Пароль" />
+          <Input
+            type="password"
+            name="confirmPassword"
+            onChange={this.onChange}
+            value={confirmPassword}
+            placeholder="Повторите пароль"
+          />
+          <Button className={cx('button')}>Зарегистироваться</Button>
         </form>
       </Layout>
     );
@@ -90,4 +101,3 @@ export default (connect as any)(
     register,
   },
 )(RegistrationPage);
-
