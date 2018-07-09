@@ -5,6 +5,7 @@ const compression = require('compression');
 const Chalk = require('chalk');
 const appConfig = require('../../config/main');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
@@ -15,6 +16,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(__dirname, IS_PROD ? 'static/icons/' : '../src/server/public/icons', 'favicon.ico')));
 app.use(compression());
 app.use(express.static(path.join(__dirname, '/')));
+
+app.use((req, res, next) => {
+  if (req.headers && req.headers.authorization) {
+    jwt.verify(req.headers.authorization, 'RESTFULAPIs', (err, decode) => {
+      req.user = err ? undefined : decode;
+
+      console.log('decode user', req.user);
+
+      next();
+    })
+  } else {
+    req.user = undefined;
+    next();
+  }
+})
+
 app.use(require('./session').default);
 app.use(require('./api/todos'));
 app.use(require('./api/user'));

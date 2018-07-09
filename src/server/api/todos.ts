@@ -2,8 +2,16 @@ import Todo from '../models/todos';
 import wss from '../ws';
 const router = require('express').Router();
 
+const loginRequired = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    return res.status(401).json({ message: 'Unauthorized user!' });
+  }
+};
 
-router.get('/api/todos', (req, res) => {
+
+router.get('/api/todos', loginRequired, (req, res) => {
   if (req.session.view) {
     req.session.view++;
   } else {

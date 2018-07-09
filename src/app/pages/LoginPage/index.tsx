@@ -14,7 +14,7 @@ const classNames = require('classnames/bind');
 const cx = classNames.bind(style);
 
 interface ILoginForm {
-  login: string;
+  username: string;
   password: string;
 }
 
@@ -29,7 +29,7 @@ interface IState {
 
 class LoginPage extends React.Component<IProps, IState> {
   static DEFAULT_FORM = {
-    login: '',
+    username: '',
     password: '',
   };
 
@@ -62,13 +62,13 @@ class LoginPage extends React.Component<IProps, IState> {
   };
 
   render() {
-    const { login, password } = this.state.form;
+    const { username, password } = this.state.form;
 
     return (
       <Layout>
         <form className={cx('form')} onSubmit={this.submit}>
           <Title className={cx('title')}>Вход</Title>
-          <Input type="text" name="login" onChange={this.onChange} value={login} placeholder="Логин" />
+          <Input type="text" name="username" onChange={this.onChange} value={username} placeholder="Логин" />
           <Input type="password" name="password" onChange={this.onChange} value={password} placeholder="Пароль" />
           <Button className={cx('button')}>Войти</Button>
         </form>

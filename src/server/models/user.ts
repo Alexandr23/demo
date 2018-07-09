@@ -1,6 +1,7 @@
 import db from '../db';
 const Scheme = db.Schema;
 import * as uniqueValidator from 'mongoose-unique-validator';
+import * as bcrypt from 'bcrypt';
 // import crypto from 'crypto';
 
 const userSchema = new Scheme(
@@ -13,7 +14,7 @@ const userSchema = new Scheme(
       index: true,
       unique: true,
     },
-    password: String,
+    hash: String,
   },
   {
     versionKey: false,
@@ -21,7 +22,12 @@ const userSchema = new Scheme(
   },
 );
 
+// TODO: а нужно ли это
 userSchema.plugin(uniqueValidator, { message: 'is already taken.' });
+
+userSchema.methods.comparePassword = function(password) {
+  return bcrypt.compareSync(password, this.hash);
+}
 
 // userSchema.methods.setPassword = password => {
 //   this.salt = crypto.randomBytes(16).toString('hex');

@@ -1,5 +1,6 @@
 import { AxiosResponse, AxiosError } from 'axios';
 import * as api from '../api/user';
+import request from '../services/request';
 import { IUserState } from '../models/user';
 
 const USER_LOGIN_START = 'USER_LOGIN_START';
@@ -12,7 +13,7 @@ const USER_REGISTER_FAILURE = 'USER_REGISTER_FAILURE';
 
 const INITIAL_STATE: IUserState = {
   user: {
-    login: '',
+    username: '',
     password: '',
   },
   error: null,
@@ -88,12 +89,14 @@ export const login = form => {
     
     return api
       .login(form)
-      .then((response: AxiosResponse) =>
+      .then((response: AxiosResponse) => {
+        // TODO: костыль
+        request.defaults.headers.common.Authorization = response.data.token;
         dispatch({
           type: USER_LOGIN_SUCCESS,
           payload: response.data,
-        }),
-      )
+        });
+      })
       .catch((error: AxiosError) =>
         dispatch({
           type: USER_LOGIN_FAILURE,
